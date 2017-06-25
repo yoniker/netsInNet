@@ -3,7 +3,7 @@ from torch.utils.data import Dataset, DataLoader
 import pandas as pd
 import numpy as np
 
-DATABASE_NAME='v1pv2.csv'
+DATABASE_NAME='v1pv2VERSION2.csv'
 TRAINING_RATIO=0.6
 VALIDATION_RATIO=0.2 #test ratio is determined by those two ratios as 1-training_ratio-validation_ratio
 
@@ -31,4 +31,4 @@ class SimpleDataset(Dataset):
         def __getitem__(self, idx):
                 # from pdb_clone import pdb
                 # pdb.set_trace()
-                return {'example':self.db.ix[idx,:-1].as_matrix().astype('float'),'target':np.array(self.db.ix[idx,-1]).reshape(1,)}
+                return {'example':self.db.iloc[idx,:-1].as_matrix().astype('float'),'target':np.array(self.db.iloc[idx,-1]).reshape(1,)}

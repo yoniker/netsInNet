@@ -76,24 +76,13 @@ def train(number_of_epochs):
                         loss = criterion(outputs,targets)
                         loss.backward()
                         #Change the gradient so that it will be grad/lambda - each subsystem will train at full pace,regardless of its current contribution to the output.
-                        new_model.change_gradients()
+                        #new_model.change_gradients()
                         optimizer.step()
 
 train(1)
 
 
 
-
-# for (example_num,data) in enumerate(dataLoader):
-#         optimizer.zero_grad()
-#         inputs=Variable(data['example'].float())
-#         targets=Variable(data['target'].float())
-#         outputs=new_model(inputs)
-#         loss = criterion(outputs,targets)
-#         loss.backward()
-#         break
-#         #Change the gradient so that it will be grad/lambda - each subsystem will train at full pace,regardless of its current contribution to the output.
-#         #new_model.lambdas_matrix.grad.data=(new_model.lambdas_matrix.grad/new_model.current_lambdas).data
-#         optimizer.step()
-
-
+#Amazingly, the hypothesis seems to do x+y "ish" even though it seems irrelevant!
+#Check it out:
+#new_model(Variable(torch.from_numpy(np.array([-10000,11])).view(1,-1)).float())
